@@ -61,7 +61,7 @@ public class AuthController {
 
         ResponseCookie cookie = ResponseCookie.from("access_token", token)
                 .httpOnly(true)
-                .secure(false) // true when using HTTPS in production
+                .secure(true) // true when using HTTPS in production
                 .sameSite("Lax")
                 .path("/")
                 .maxAge(Duration.ofSeconds(expiration/1000))
