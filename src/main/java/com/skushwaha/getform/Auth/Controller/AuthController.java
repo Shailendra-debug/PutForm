@@ -55,16 +55,15 @@ public class AuthController {
     public ResponseEntity<?> login(
             @Valid @RequestBody LoginRequest request,
             HttpServletResponse response) {
-        System.out.println("Hello from cantrolaer");
 
         String token = authService.login(request);
 
         ResponseCookie cookie = ResponseCookie.from("access_token", token)
                 .httpOnly(true)
-                .secure(true) // true when using HTTPS in production
-                .sameSite("Lax")
+                .secure(true)
+                .sameSite("None")
                 .path("/")
-                .maxAge(Duration.ofSeconds(expiration/1000))
+                .maxAge(Duration.ofSeconds(expiration / 1000))
                 .build();
 
         response.addHeader(
@@ -73,13 +72,12 @@ public class AuthController {
         );
 
         return ResponseEntity.ok(
-                java.util.Map.of(
+                Map.of(
                         "success", true,
                         "message", "Welcome back! Login successful."
                 )
         );
     }
-
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) {
 
