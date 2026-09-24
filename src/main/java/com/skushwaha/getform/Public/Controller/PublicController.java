@@ -30,6 +30,11 @@ public class PublicController {
     private final ResponseService responseService;
     private final ContactMessageService contactMessageService;
 
+    @GetMapping("/health")
+    public String health(){
+        return "Health UP";
+    }
+
     @PostMapping("/contact")
     public ResponseEntity<Map<String, Object>> submit(
             @Valid @RequestBody ContactMessageRequest request) {

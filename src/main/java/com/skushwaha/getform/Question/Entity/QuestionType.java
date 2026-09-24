@@ -13,7 +13,5 @@ public enum QuestionType {
     DROPDOWN,
 
     CHECKBOX,
-
-    FILE_UPLOAD,
     RATING
 }
